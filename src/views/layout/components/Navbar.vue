@@ -1,16 +1,21 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
-    <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container"/>
-    <breadcrumb />
+    <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container"></hamburger>
+    <breadcrumb></breadcrumb>
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
         <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
-        <i class="el-icon-caret-bottom"/>
+        <i class="el-icon-caret-bottom"></i>
       </div>
       <el-dropdown-menu slot="dropdown" class="user-dropdown">
         <router-link class="inlineBlock" to="/">
           <el-dropdown-item>
-            Home
+            主页
+          </el-dropdown-item>
+        </router-link>
+        <router-link to="/user/detail" class="inlineBlock">
+          <el-dropdown-item>
+            用户详情
           </el-dropdown-item>
         </router-link>
         <el-dropdown-item divided>

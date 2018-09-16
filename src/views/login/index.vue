@@ -4,13 +4,13 @@
       <h3 class="title">vue-admin-template</h3>
       <el-form-item prop="username">
         <span class="svg-container svg-container_login">
-          <svg-icon icon-class="user" />
+          <svg-icon icon-class="user" ></svg-icon>
         </span>
-        <el-input v-model="loginForm.username" name="username" type="text" auto-complete="on" placeholder="username" />
+        <el-input v-model="loginForm.username" name="username" type="text" auto-complete="on" placeholder="username" ></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container">
-          <svg-icon icon-class="password" />
+          <svg-icon icon-class="password" ></svg-icon>
         </span>
         <el-input
           :type="pwdType"
@@ -18,9 +18,9 @@
           name="password"
           auto-complete="on"
           placeholder="password"
-          @keyup.enter.native="handleLogin" />
+          @keyup.enter.native="handleLogin" ></el-input>
         <span class="show-pwd" @click="showPwd">
-          <svg-icon icon-class="eye" />
+          <svg-icon icon-class="eye" ></svg-icon>
         </span>
       </el-form-item>
       <el-form-item>
@@ -50,8 +50,8 @@ export default {
       }
     }
     const validatePass = (rule, value, callback) => {
-      if (value.length < 5) {
-        callback(new Error('密码不能小于5位'))
+      if (value.length < 4) {
+        callback(new Error('密码不能小于4位'))
       } else {
         callback()
       }
@@ -59,7 +59,7 @@ export default {
     return {
       loginForm: {
         username: 'admin',
-        password: 'admin'
+        password: 'test'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
