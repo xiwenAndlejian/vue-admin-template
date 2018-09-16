@@ -35,8 +35,10 @@ export const constantRouterMap = [
       path: 'dashboard',
       component: () => import('@/views/dashboard/index')
     }]
-  },
+  }
+]
 
+export const asyncRouterMap = [
   {
     path: '/example',
     component: Layout,
@@ -54,11 +56,37 @@ export const constantRouterMap = [
         path: 'tree',
         name: 'Tree',
         component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        meta: { title: 'Tree', icon: 'tree', roles: ['admin'] }
       }
     ]
   },
-
+  {
+    path: '/user',
+    redirect: '/user/detail',
+    component: Layout,
+    children: [{
+      path: 'detail',
+      name: '用户详情',
+      component: () =>
+        import('@/views/user/detail'),
+      meta: {
+        title: '用户详情',
+        icon: 'logs'
+      }
+    }]
+  },
+  {
+    path: '/log',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: '系统日志',
+        component: () => import('@/views/log/index'),
+        meta: { title: '系统日志', icon: 'logs' }
+      }
+    ]
+  },
   {
     path: '/form',
     component: Layout,
