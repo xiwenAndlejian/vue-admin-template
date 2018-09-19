@@ -31,7 +31,7 @@
           <el-tag :type="scope.row.success | statusFilter">{{ scope.row.success }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="额外信息" width="450" align="center">
+      <el-table-column label="额外信息" align="center">
         <template slot-scope="scope">
           {{ scope.row.message }}
         </template>

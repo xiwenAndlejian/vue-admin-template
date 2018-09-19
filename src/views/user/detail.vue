@@ -12,7 +12,7 @@
               :http-request="avatarUpload"
               action="string"
               class="avatar-uploader">
-              <img v-if="userInfo.avatar" :src="`${userInfo.avatar}`" class="img"><img>
+              <img v-if="userInfo.avatar" :src="`//www.dekuofa.com/myfile/${userInfo.avatar}`" class="img"><img>
             </el-upload>
           </el-form-item>
         </div>
@@ -25,6 +25,9 @@
           </el-form-item>
           <el-form-item label="修改时间" label-width="120px">
             {{ showDate(userInfo.modifyTime) }}
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="saveDetail">保存</el-button>
           </el-form-item>
         </div>
         <!-- <el-form-item label="创建时间">
@@ -39,7 +42,7 @@
 </template>
 
 <script>
-import { getUserDetail } from '@/api/user'
+import { getUserDetail, saveUserDetail } from '@/api/user'
 import { upload } from '@/api/image'
 import { mapGetters } from 'vuex'
 import { parseTime } from '@/utils/index'
@@ -95,10 +98,25 @@ export default {
       data.append('file', item.file)
       param.file_name = 'avatar'
       upload(param, data).then(res => {
-        this.userInfo.avatar = `https://www.dekuofa.com/myfile/${res.payload.url}`
+        this.userInfo.avatar = `${res.payload.url}`
       })
         .catch(error => {
           console.error(error)
+        })
+    },
+    saveDetail() {
+      saveUserDetail(this.userId, this.userInfo)
+        .then(data => {
+          this.$message({
+            type: 'success',
+            message: '修改用户信息成功'
+          })
+        })
+        .catch(error => {
+          this.$message({
+            type: 'error',
+            message: `修改用户信息失败:${error.msg}`
+          })
         })
     }
   }
