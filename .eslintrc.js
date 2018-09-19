@@ -20,6 +20,15 @@ module.exports = {
         "max": 1,
         "allowFirstLine": false
       }
+    }], 
+    "vue/html-self-closing": ["error", {
+      "html": {
+        "void": "never",
+        "normal": "never",
+        "component": "never"
+      },
+      "svg": "always",
+      "math": "always"
     }],
     "vue/name-property-casing": ["error", "PascalCase"],
     'accessor-pairs': 2,
