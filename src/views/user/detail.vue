@@ -56,9 +56,6 @@ export default {
         avatar: '',
         lastLoginIp: '',
         lastLoginTime: null
-      },
-      avatarInfo: {
-        file_name: 'avatar'
       }
     }
   },
@@ -111,12 +108,15 @@ export default {
             type: 'success',
             message: '修改用户信息成功'
           })
+          // 同步用户头像
+          this.$store.commit('SET_AVATAR', this.userInfo.avatar)
         })
         .catch(error => {
           this.$message({
             type: 'error',
             message: `修改用户信息失败:${error.msg}`
           })
+          console.error('更新失败')
         })
     }
   }

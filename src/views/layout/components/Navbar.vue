@@ -4,12 +4,16 @@
     <breadcrumb></breadcrumb>
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
+        <!-- 头像 -->
         <img :src="`//www.dekuofa.com/myfile/${avatar}`" class="user-avatar">
         <i class="el-icon-caret-bottom"></i>
       </div>
       <el-dropdown-menu slot="dropdown" class="user-dropdown">
+        <el-dropdown-item disabled>
+          {{ name }}
+        </el-dropdown-item>
         <router-link class="inlineBlock" to="/">
-          <el-dropdown-item>
+          <el-dropdown-item divided>
             主页
           </el-dropdown-item>
         </router-link>
@@ -18,8 +22,8 @@
             用户详情
           </el-dropdown-item>
         </router-link>
-        <el-dropdown-item divided>
-          <span style="display:block;" @click="logout">LogOut</span>
+        <el-dropdown-item>
+          <span style="display:block;" @click="logout">退出</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
@@ -27,7 +31,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 
@@ -39,8 +43,11 @@ export default {
   computed: {
     ...mapGetters([
       'sidebar',
-      'avatar'
-    ])
+      'name'
+    ]),
+    ...mapState({
+      avatar: state => state.user.avatar
+    })
   },
   methods: {
     toggleSideBar() {
