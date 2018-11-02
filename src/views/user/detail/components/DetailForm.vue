@@ -1,17 +1,20 @@
 <template>
-  <el-form ref="form" :model="userInfo" label-width="80px">
+  <el-form ref="form" :model="userInfo" label-width="80px" label-position="top">
+    <div class="form-header"><h1 >编辑你的用户信息</h1></div>
     <div class="main">
       <el-form-item label="昵称" label-width="120px">
         <el-input v-model="userInfo.nickName" class="nick-name" placeholder="用户昵称"></el-input>
       </el-form-item>
-      <el-form-item label="创建时间" label-width="120px">
+      <!-- <el-form-item label="创建时间" label-width="120px">
         {{ showDate(userInfo.createTime) }}
       </el-form-item>
       <el-form-item label="修改时间" label-width="120px">
         {{ showDate(userInfo.modifyTime) }}
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item>
-        <el-button type="primary" @click="saveDetail">保存</el-button>
+        <div class="form-button-list">
+          <el-button class="save-button" type="primary" @click="saveDetail">保存</el-button>
+        </div>
       </el-form-item>
     </div>
   </el-form>
@@ -75,4 +78,5 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+@import '@/styles/common.scss';
 </style>

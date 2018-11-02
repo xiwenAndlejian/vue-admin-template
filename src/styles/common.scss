@@ -1,0 +1,27 @@
+.form-header {
+  border-bottom: 1px solid #efefef;
+
+  h1 {
+    margin: 0.5em 0;
+    font-size: 26px;
+    font-weight: 400;
+  }
+}
+
+.nick-name {
+  max-width: 300px;
+}
+
+.save-button {
+  border-radius: 500px;
+  line-height: 12px;
+  min-width: 30;
+  padding: 10px 32px 10px 32px;
+}
+
+.form-button-list {
+  padding: 20px 0 0;
+  border-top: 1px solid #efefef;
+  margin-top: 5px;
+  margin-bottom: -10px;
+}
