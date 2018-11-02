@@ -23,10 +23,10 @@ export function changePassword(userId, data) {
   })
 }
 
-export function changeAvatar(userId, param) {
+export function changeAvatar(userId, params) {
   return request({
     url: `/user/${userId}/avatar`,
     method: 'put',
-    param: param
+    params: params
   })
 }
