@@ -14,3 +14,19 @@ export function saveUserDetail(userId, data) {
     data: data
   })
 }
+
+export function changePassword(userId, data) {
+  return request({
+    url: `/user/${userId}/passwd`,
+    method: 'put',
+    data: data
+  })
+}
+
+export function changeAvatar(userId, param) {
+  return request({
+    url: `/user/${userId}/avatar`,
+    method: 'put',
+    param: param
+  })
+}
