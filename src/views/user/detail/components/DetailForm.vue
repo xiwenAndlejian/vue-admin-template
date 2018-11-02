@@ -29,9 +29,7 @@ export default {
   data() {
     return {
       userInfo: {
-        nickName: '',
-        lastLoginIp: '',
-        lastLoginTime: null
+        nickName: ''
       }
     }
   },
@@ -54,7 +52,10 @@ export default {
       })
     },
     saveDetail() {
-      saveUserDetail(this.userId, this.userInfo)
+      const data = {
+        nickName: this.userInfo.nickName
+      }
+      saveUserDetail(this.userId, data)
         .then(data => {
           this.$message({
             type: 'success',

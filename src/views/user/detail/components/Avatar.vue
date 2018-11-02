@@ -32,10 +32,14 @@ export default {
   methods: {
     beforeAvatarUpload,
     avatarUploadSuccess(response) {
-      // const avatar = response.payload.url
-      changeAvatar(this.userId, { avatar: '' })
+      const avatar = response.payload.url
+      changeAvatar(this.userId, { avatarPath: avatar })
         .then(response => {
-          this.$store.commit('SET_AVATAR', response.payload.url)
+          this.$store.commit('SET_AVATAR', avatar)
+          this.$message({
+            type: 'success',
+            message: '修改用户头像成功'
+          })
         })
         .catch(error => {
           console.error(error)
