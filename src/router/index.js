@@ -76,17 +76,33 @@ export const asyncRouterMap = [{
   ]
 },
 {
-  path: '/user',
+  path: '/detail',
   redirect: '/user/detail',
   component: Layout,
   children: [{
-    path: 'detail',
+    path: '/detail',
     name: '用户详情',
     component: () =>
         import('@/views/user/detail/index'),
     meta: {
       title: '用户详情',
-      icon: 'logs'
+      icon: 'edit'
+    }
+  }]
+},
+{
+  path: '/password',
+  component: Layout,
+  redirect: '/user/password/index',
+  // hidden: true,
+  // alwaysShow: true,
+  children: [{
+    path: 'change',
+    name: '修改密码',
+    component: () => import('@/views/user/password/index'),
+    meta: {
+      title: '修改密码',
+      icon: 'lock'
     }
   }]
 },
