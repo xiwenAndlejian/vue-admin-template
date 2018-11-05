@@ -1,17 +1,17 @@
 <template>
-  <div class="app-container">
-    <div>
-      <el-row :gutter="20" type="flex">
-        <el-col :span="6" class="avatar"><avatar></avatar></el-col>
-        <el-col :span="20" class="user-detail">
-          <detail-form></detail-form>
-        </el-col>
-      </el-row>
-    </div>
+  <div class="app-container content">
+    <el-row :gutter="40">
+      <el-col :span="4" class="avatar">
+        <avatar></avatar>
+      </el-col>
+      <el-col :span="20" class="user-detail">
+        <detail-form></detail-form>
+      </el-col>
+    </el-row>
   </div>
 </template>
-
 <script>
+// 1529 - 80 -245 - 1224
 import Avatar from './components/Avatar'
 import DetailForm from './components/DetailForm'
 
@@ -33,23 +33,18 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-.main-info {
-  width: 70%;
-  float: left;
-  .nick-name {
-    width: 250px;
-  }
-}
 .avatar {
-  padding: 16px 16px 0px;
-  margin-bottom: 32px;
+  padding: 20px 20px 0px;
+  margin-bottom: 40px;
 }
 .bg-blue {
   background-color: #409eff;
 }
 .user-detail {
-  background-color: #fff;
-  padding: 16px 16px 0px;
-  margin-bottom: 32px;
+  padding: 20px 20px 0px;
+  margin-bottom: 40px;
+}
+.content {
+  padding: 40px;
 }
 </style>
