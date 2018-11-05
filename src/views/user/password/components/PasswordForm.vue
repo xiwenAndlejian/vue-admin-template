@@ -15,12 +15,13 @@
         <el-form-item>
           <div ></div>
         </el-form-item>
+        <el-form-item>
+          <div class="form-button-list">
+            <el-button class="save-button" type="primary" >保存</el-button>
+          </div>
+        </el-form-item>
       </el-form>
-      <el-form-item>
-        <div class="form-button-list">
-          <el-button class="save-button" type="primary" >保存</el-button>
-        </div>
-      </el-form-item>
+
     </div>
   </div>
 </template>
