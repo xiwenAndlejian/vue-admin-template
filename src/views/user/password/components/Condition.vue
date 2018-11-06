@@ -1,9 +1,9 @@
 <template>
   <div class="content">
     <h2>您的密码必须包含：</h2>
-    <p><i class="el-icon-success"></i>至少8个字符</p>
-    <p><i class="el-icon-success"></i>大小写数字</p>
-    <p><i class="el-icon-success"></i>至少一个数字</p>
+    <p><svg-icon icon-class="check" class-name="success"></svg-icon>至少8个字符</p>
+    <p><svg-icon icon-class="check" class-name=""></svg-icon>大小写数字</p>
+    <p><svg-icon icon-class="check" class-name=""></svg-icon>至少一个数字</p>
   </div>
 </template>
 
@@ -31,5 +31,8 @@ export default {
 }
 .success {
   color: #67c23a;
+}
+svg {
+  margin-right: 10px;
 }
 </style>
