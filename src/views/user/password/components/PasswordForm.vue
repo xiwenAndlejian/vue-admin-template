@@ -27,20 +27,39 @@ import { changePassword } from '@/api/user'
 import { mapGetters } from 'vuex'
 
 export default {
-  components: {
+  props: {
+    passwordForm: {
+      type: Object,
+      required: true,
+      currentPasswd: {
+        type: String,
+        required: true,
+        default: ''
+      },
+      newPasswd: {
+        type: String,
+        required: true,
+        default: ''
+      },
+      checkPasswd: {
+        type: String,
+        required: true,
+        default: ''
+      }
+    }
   },
   data() {
     // todo 实现新密码条件校验
     var validatePasswd = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入新密码'))
-      } else {
-        // if (this.passwordForm.checkPasswd !== '') {
-        // 选择校验 确认密码字段
-        //   this.$refs.passwordForm.validateField('checkPasswd')
-        // }
-        callback()
       }
+      if (this.passwordForm.checkPasswd !== '') {
+        // 选择校验 确认密码字段
+        this.$refs.passwordForm.validateField('checkPasswd')
+      }
+
+      callback()
     }
     var validateCheckPasswd = (rule, value, callback) => {
       if (value === '') {
@@ -53,11 +72,6 @@ export default {
       callback()
     }
     return {
-      passwordForm: {
-        currentPasswd: '',
-        newPasswd: '',
-        checkPasswd: ''
-      },
       rule: {
         currentPasswd: [
           { type: 'string', required: true, message: '请输入当前密码', trigger: 'blur' }

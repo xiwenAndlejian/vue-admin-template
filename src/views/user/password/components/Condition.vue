@@ -4,18 +4,37 @@
     <p><svg-icon icon-class="check" class-name="success"></svg-icon>至少8个字符</p>
     <p><svg-icon icon-class="check" class-name=""></svg-icon>大小写数字</p>
     <p><svg-icon icon-class="check" class-name=""></svg-icon>至少一个数字</p>
+    {{ passwordForm.currentPasswd }}
+    {{ passwordForm.newPasswd }}
+    {{ passwordForm.checkPasswd }}
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+
 export default {
-  components: {
-
-  },
-  data() {
-    return {
-
+  props: {
+    passwordForm: {
+      type: Object,
+      required: true,
+      currentPasswd: {
+        type: String,
+        required: true,
+        default: ''
+      },
+      newPasswd: {
+        type: String,
+        required: true,
+        default: ''
+      },
+      checkPasswd: {
+        type: String,
+        required: true,
+        default: ''
+      }
     }
+  },
+  computed: {
   }
 }
 </script>
