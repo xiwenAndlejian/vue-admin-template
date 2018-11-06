@@ -1,63 +1,43 @@
 <template>
   <div class="app-container">
-    <el-table
-      v-loading="listLoading"
-      :data="list"
-      border
-      fit
-      highlight-current-row>
-      <el-table-column align="center" label="ID" width="95">
-        <template slot-scope="scope">
-          {{ scope.$index + 1 }}
-        </template>
-      </el-table-column>
-      <el-table-column label="操作员" width="150" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.username }}
-        </template>
-      </el-table-column>
-      <el-table-column label="操作" width="150" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.action }}
-        </template>
-      </el-table-column>
-      <el-table-column label="操作时间" width="200" align="center">
-        <template slot-scope="scope">
-          <span>{{ showDate(scope.row.createTime) }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column class-name="status-col" label="操作执行情况" width="110" align="center">
-        <template slot-scope="scope">
-          <el-tag :type="scope.row.success | statusFilter">{{ scope.row.success }}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column label="额外信息" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.message }}
-        </template>
-      </el-table-column>
-    </el-table>
+    <log-table :list="pageData.rows" :list-loading="listLoading" :msg="1"></log-table>
+    <el-pagination
+      :page-sizes="[10, 25, 50, 100]"
+      :page-size="10"
+      :total="pageData.totalRows"
+      layout="total, sizes, prev, pager, next, jumper"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      @prev-click="handlePrevPage"
+      @next-click="handleNextPage">
+    </el-pagination>
   </div>
 </template>
 
 <script>
 import { getLogList } from '@/api/log'
-import { parseTime } from '@/utils/index'
+import LogTable from './components/LogTable'
 
 export default {
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        success: 'success',
-        false: 'danger'
-      }
-      return statusMap[status]
-    }
+  components: {
+    LogTable
   },
+
   data() {
     return {
-      list: null,
-      listLoading: true
+      listLoading: true,
+      pageData: {
+        rows: [],
+        limit: 10,
+        pageNum: 1,
+        totalPages: 0,
+        totalRows: 0
+      },
+      pageParam: {
+        // 当前页数 & 每页条数
+        page: 1,
+        limit: 10
+      }
     }
   },
   created() {
@@ -66,14 +46,30 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getLogList().then(data => {
-        console.log(data)
-        this.list = data.payload.rows
+      getLogList(this.pageParam).then(data => {
+        this.pageData = data.payload
         this.listLoading = false
+        console.log(`current page: ${this.pageData.pageNum}`)
       })
     },
-    showDate(unixTime) {
-      return parseTime(new Date(unixTime))
+    // 每页条数修改
+    handleSizeChange(size) {
+      this.pageParam.page = 1
+      this.pageParam.limit = size
+      this.fetchData()
+    },
+    // 当前页数修改
+    handleCurrentChange(currentPage) {
+      this.pageParam.page = currentPage
+      this.fetchData()
+    },
+    // 下一页
+    handlePrevPage(currentPage) {
+      this.handleCurrentChange(currentPage)
+    },
+    // 上一页
+    handleNextPage(currentPage) {
+      this.handleCurrentChange(currentPage)
     }
   }
 }
