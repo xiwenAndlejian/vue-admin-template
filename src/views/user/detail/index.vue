@@ -1,10 +1,10 @@
 <template>
   <div class="app-container content">
     <el-row :gutter="40">
-      <el-col :span="4" class="avatar">
+      <el-col :xs="24" :sm="8" :md="8" :lg="4" xl="4" class="avatar">
         <avatar></avatar>
       </el-col>
-      <el-col :span="20" class="user-detail">
+      <el-col :xs="24" :sm="16" :md="16" :lg="20" :xl="20" class="user-detail">
         <detail-form></detail-form>
       </el-col>
     </el-row>

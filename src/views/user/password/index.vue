@@ -1,10 +1,10 @@
 <template>
   <div class="app-container content">
     <el-row :gutter="20">
-      <el-col :span="12">
+      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
         <password-form></password-form>
       </el-col>
-      <el-col :span="12">
+      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
         <condition></condition>
       </el-col>
     </el-row>
