@@ -1,17 +1,19 @@
 <template>
-  <div class="dashboard-container">
-    <div class="dashboard-text">name:{{ name }}</div>
-    <div class="dashboard-text">id:{{ id }}</div>
-    <div class="dashboard-text">roles:<span v-for="role in roles" :key="role">{{ role }} </span></div>
+  <div class="app-container">
+    <user-info></user-info>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import UserInfo from './components/UserInfo'
 
 export default {
   name: 'Dashboard',
   id: Number,
+  components: {
+    UserInfo
+  },
   computed: {
     ...mapGetters([
       'id',

@@ -1,17 +1,30 @@
 <template>
   <div style="background-color: white; padding: 10px">
-    <el-form ref="form" :model="userInfo" class="user-detail-form" label-width="80px" label-position="top">
+    <el-form ref="form" :model="userDetail" class="user-detail-form" label-width="80px" label-position="top">
       <div class="form-header"><h1 >编辑你的用户信息</h1></div>
       <div class="main">
-        <el-form-item label="昵称" label-width="120px">
-          <el-input v-model="userInfo.nickName" class="nick-name" placeholder="用户昵称"></el-input>
+        <el-form-item label="性别" label-width="120px">
+          <el-select v-model="userDetail.gender" placeholder="请选择">
+            <el-option
+              v-for="gender in genders"
+              :key="gender.value"
+              :label="gender.label"
+              :value="gender.value">
+            </el-option>
+          </el-select>
         </el-form-item>
-        <!-- <el-form-item label="创建时间" label-width="120px">
-        {{ showDate(userInfo.createTime) }}
-      </el-form-item>
-      <el-form-item label="修改时间" label-width="120px">
-        {{ showDate(userInfo.modifyTime) }}
-      </el-form-item> -->
+        <el-form-item label="真实姓名">
+          <el-input v-model="userDetail.realName" class="nick-name" placeholder="真实姓名"></el-input>
+        </el-form-item>
+        <el-form-item label="生日">
+          <el-input v-model="userDetail.birthday" class="nick-name" placeholder="生日"></el-input>
+        </el-form-item>
+        <el-form-item label="手机号">
+          <el-input v-model="userDetail.mobile" class="nick-name" placeholder="手机号"></el-input>
+        </el-form-item>
+        <el-form-item label="电子邮箱">
+          <el-input v-model="userDetail.email" class="nick-name" placeholder="电子邮箱"></el-input>
+        </el-form-item>
         <el-form-item>
           <div class="form-button-list">
             <el-button class="save-button" type="primary" @click="saveDetail">保存</el-button>
@@ -33,9 +46,23 @@ export default {
   },
   data() {
     return {
-      userInfo: {
-        nickName: ''
-      }
+      userDetail: {
+        gender: '',
+        realName: '',
+        birthday: '',
+        mobile: '',
+        email: ''
+      },
+      genders: [{
+        label: '未设置',
+        value: '0'
+      }, {
+        label: '男',
+        value: '1'
+      }, {
+        label: '女',
+        value: '2'
+      }]
     }
   },
   computed: {
@@ -44,21 +71,21 @@ export default {
     })
   },
   created() {
-    this.getUserInfo()
+    this.getDetail()
   },
   methods: {
     showDate(timestamp) {
       return parseTime(new Date(timestamp))
     },
-    getUserInfo() {
-      getUserDetail(this.userId).then(data => {
+    getDetail() {
+      getUserDetail().then(data => {
         console.log(data.payload)
-        this.userInfo = data.payload
+        this.userDetail = data.payload
       })
     },
     saveDetail() {
       const data = {
-        nickName: this.userInfo.nickName
+        nickName: this.userDetail.nickName
       }
       saveUserDetail(this.userId, data)
         .then(data => {
@@ -80,7 +107,6 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-@import '@/styles/common.scss';
 .app {
   color: azure;
 }
