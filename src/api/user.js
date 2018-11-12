@@ -7,9 +7,9 @@ export function getUserDetail() {
   })
 }
 
-export function saveUserDetail(userId, data) {
+export function saveUserDetail(data) {
   return request({
-    url: `/user/${userId}`,
+    url: `/user/detail`,
     method: 'put',
     data: data
   })

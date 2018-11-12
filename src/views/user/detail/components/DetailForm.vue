@@ -16,6 +16,7 @@
         <el-form-item label="真实姓名">
           <el-input v-model="userDetail.realName" class="nick-name" placeholder="真实姓名"></el-input>
         </el-form-item>
+        <!-- todo 日期选择 -->
         <el-form-item label="生日">
           <el-input v-model="userDetail.birthday" class="nick-name" placeholder="生日"></el-input>
         </el-form-item>
@@ -41,9 +42,7 @@ import { getUserDetail, saveUserDetail } from '@/api/user'
 import { mapGetters } from 'vuex'
 
 export default {
-  components: {
-
-  },
+  components: {},
   data() {
     return {
       userDetail: {
@@ -53,16 +52,20 @@ export default {
         mobile: '',
         email: ''
       },
-      genders: [{
-        label: '未设置',
-        value: '0'
-      }, {
-        label: '男',
-        value: '1'
-      }, {
-        label: '女',
-        value: '2'
-      }]
+      genders: [
+        {
+          label: '未设置',
+          value: 'NULL'
+        },
+        {
+          label: '男',
+          value: 'MALE'
+        },
+        {
+          label: '女',
+          value: 'FEMALE'
+        }
+      ]
     }
   },
   computed: {
@@ -79,15 +82,17 @@ export default {
     },
     getDetail() {
       getUserDetail().then(data => {
-        console.log(data.payload)
         this.userDetail = data.payload
       })
     },
     saveDetail() {
       const data = {
-        nickName: this.userDetail.nickName
+        realName: this.userDetail.realName,
+        birthday: this.userDetail.birthday,
+        mobile: this.userDetail.mobile,
+        email: this.userDetail.email
       }
-      saveUserDetail(this.userId, data)
+      saveUserDetail(data)
         .then(data => {
           this.$message({
             type: 'success',
