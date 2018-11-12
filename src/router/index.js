@@ -120,6 +120,19 @@ export const asyncRouterMap = [{
   }]
 },
 {
+  path: '/userManager',
+  component: Layout,
+  children: [{
+    path: 'index',
+    name: '用户管理',
+    component: () => import('@/views/user/manager/index'),
+    meta: {
+      title: '用户管理',
+      icon: 'user-management'
+    }
+  }]
+},
+{
   path: '/form',
   component: Layout,
   children: [{
