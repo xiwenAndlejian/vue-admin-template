@@ -5,7 +5,7 @@
         <password-form :password-form="passwordForm"></password-form>
       </el-col>
       <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-        <condition :password-form="passwordForm"></condition>
+        <condition></condition>
       </el-col>
     </el-row>
   </div>

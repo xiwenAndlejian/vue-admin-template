@@ -27,27 +27,6 @@ import { changePassword } from '@/api/user'
 import { mapGetters } from 'vuex'
 
 export default {
-  props: {
-    passwordForm: {
-      type: Object,
-      required: true,
-      currentPasswd: {
-        type: String,
-        required: true,
-        default: ''
-      },
-      newPasswd: {
-        type: String,
-        required: true,
-        default: ''
-      },
-      checkPasswd: {
-        type: String,
-        required: true,
-        default: ''
-      }
-    }
-  },
   data() {
     // todo 实现新密码条件校验
     var validatePasswd = (rule, value, callback) => {
@@ -74,20 +53,24 @@ export default {
     return {
       rule: {
         currentPasswd: [
-          { type: 'string', required: true, message: '请输入当前密码', trigger: 'blur' }
+          {
+            type: 'string',
+            required: true,
+            message: '请输入当前密码',
+            trigger: 'blur'
+          }
         ],
         newPasswd: [
           { validator: validatePasswd, required: true, trigger: 'blur' }
         ],
-        checkPasswd: [
-          { validator: validateCheckPasswd, required: true }
-        ]
+        checkPasswd: [{ validator: validateCheckPasswd, required: true }]
       }
     }
   },
   computed: {
     ...mapGetters({
-      userId: 'id'
+      userId: 'id',
+      passwordForm: 'passwordChangeForm'
     })
   },
   methods: {
@@ -96,11 +79,10 @@ export default {
         oldPasswd: this.passwordForm.currentPasswd,
         newPasswd: this.passwordForm.newPasswd
       }
-      changePassword(this.userId, data)
-        .catch()
+      changePassword(this.userId, data).catch()
     },
     submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
+      this.$refs[formName].validate(valid => {
         if (valid) {
           this.onSubmit()
         }

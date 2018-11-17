@@ -13,8 +13,8 @@ export default {
       required: true
     },
     className: {
-      type: String,
-      default: ''
+      type: Object,
+      default: null
     }
   },
   computed: {
@@ -23,7 +23,17 @@ export default {
     },
     svgClass() {
       if (this.className) {
-        return 'svg-icon ' + this.className
+        let classNames = ''
+        const classes = Object.keys(this.className)
+
+        classes.forEach(name => {
+          if (
+            Object.getOwnPropertyDescriptor(this.className, name).value === true
+          ) {
+            classNames += ` ${name}`
+          }
+        })
+        return 'svg-icon' + classNames
       } else {
         return 'svg-icon'
       }
