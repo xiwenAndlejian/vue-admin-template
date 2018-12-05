@@ -14,12 +14,7 @@ export function beforeAvatarUpload(file) {
 }
 
 export function avatarUploadSuccess(response, file, fileList) {
-  console.log(response)
-  console.log(file)
-  debugger
   this.userInfo.avatar = URL.createObjectURL(file.raw)
 }
 
-export function avatarUpload() {
-  console.log(1)
-}
+export function avatarUpload() {}
