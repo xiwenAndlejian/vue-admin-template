@@ -12,6 +12,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import * as filters from '@/filters'
+import bus from '@/utils/bus'
 
 import '@/icons' // icon
 import '@/permission' // permission control
@@ -20,6 +21,7 @@ Vue.use(ElementUI, {
   // locale
 })
 
+Vue.prototype.$bus = bus
 Vue.config.productionTip = false
 // 全局过滤器
 Object.keys(filters).forEach(k => Vue.filter(k, filters[k]))
