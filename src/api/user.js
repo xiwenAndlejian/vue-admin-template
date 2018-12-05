@@ -23,6 +23,14 @@ export function changePassword(userId, data) {
   })
 }
 
+export function uniqueUsername(params) {
+  return request({
+    url: `/unique/user/username`,
+    method: 'get',
+    params: params
+  })
+}
+
 export function changeAvatar(userId, params) {
   return request({
     url: `/user/${userId}/avatar`,
