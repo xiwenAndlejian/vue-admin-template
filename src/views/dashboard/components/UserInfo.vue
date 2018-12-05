@@ -1,9 +1,10 @@
 <template>
   <el-row :gutter="40">
-    <el-col :span="4">
-      <img v-if="avatar" :src="`//www.dekuofa.com/myfile/${avatar}`" class="avatar"><img>
+    <el-col :xs="24" :sm="24" :md="24" :lg="6" :xl="4">
+      <img v-if="avatar" :src="`//www.dekuofa.com/myfile/${avatar}`" class="avatar">
+      <img>
     </el-col>
-    <el-col :span="20" >
+    <el-col :xs="24" :sm="24" :md="24" :lg="18" :xl="20">
       <el-row>
         <h1 class="nick-name">{{ name }}</h1>
       </el-row>
@@ -23,25 +24,18 @@
 
 <script type="text/ecmascript-6">
 import { mapGetters, mapState } from 'vuex'
+
 export default {
   name: 'UserInfo',
-  components: {
-
-  },
+  components: {},
   data() {
-    return {
-
-    }
+    return {}
   },
   computed: {
     ...mapState({
       avatar: state => state.user.avatar
     }),
-    ...mapGetters([
-      'id',
-      'name',
-      'roles'
-    ])
+    ...mapGetters(['id', 'name', 'roles'])
   }
 }
 </script>

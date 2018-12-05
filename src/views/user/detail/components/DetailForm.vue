@@ -37,7 +37,6 @@
 </template>
 
 <script type="text/ecmascript-6">
-import { parseTime } from '@/utils/index'
 import { getUserDetail, saveUserDetail } from '@/api/user'
 import { mapGetters } from 'vuex'
 
@@ -77,9 +76,6 @@ export default {
     this.getDetail()
   },
   methods: {
-    showDate(timestamp) {
-      return parseTime(new Date(timestamp))
-    },
     getDetail() {
       getUserDetail().then(data => {
         this.userDetail = data.payload

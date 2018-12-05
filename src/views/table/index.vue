@@ -24,7 +24,7 @@
       </el-table-column>
       <el-table-column label="最后一次登陆时间" width="200" align="center">
         <template slot-scope="scope">
-          <span>{{ showDate(scope.row.lastLoginTime) }}</span>
+          <span>{{ scope.row.lastLoginTime|DateFilter }}</span>
         </template>
       </el-table-column>
       <el-table-column label="最后一次登陆ip" width="150" align="center">
@@ -55,7 +55,6 @@
 
 <script>
 import { getList } from '@/api/table'
-import { parseTime } from '@/utils/index'
 
 export default {
   filters: {
@@ -83,17 +82,15 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getList(this.listQuery).then(response => {
-        console.log(response)
-        this.list = response.payload.rows
-        this.listLoading = false
-      })
+      getList(this.listQuery)
+        .then(response => {
+          console.log(response)
+          this.list = response.payload.rows
+          this.listLoading = false
+        })
         .catch(err => {
           console.error(err)
         })
-    },
-    showDate(unixTime) {
-      return parseTime(new Date(unixTime))
     }
   }
 }

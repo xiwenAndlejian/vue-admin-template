@@ -4,7 +4,7 @@
     <div>
       <el-form ref="passwordForm" :rules="rule" :model="passwordForm" class="" label-width="80px" label-position="top">
         <el-form-item prop="currentPasswd" label="当前密码" label-width="120px">
-          <el-input v-model="passwordForm.currentPasswd"></el-input>
+          <el-input v-model="passwordForm.currentPasswd" type="password" ></el-input>
         </el-form-item>
         <el-form-item prop="newPasswd" label="新密码" label-width="120px">
           <el-input v-model="passwordForm.newPasswd" type="password"></el-input>
@@ -47,7 +47,6 @@ export default {
       if (value !== this.passwordForm.newPasswd) {
         callback(new Error('请输入相同密码'))
       }
-
       callback()
     }
     return {
@@ -84,7 +83,9 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.onSubmit()
+          // 测试版不提交表单
+          this.$message('测试版暂不支持修改密码')
+          // this.onSubmit()
         }
         return false
       })

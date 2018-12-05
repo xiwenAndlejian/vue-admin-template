@@ -11,7 +11,6 @@
   </div>
 </template>
 <script>
-// 1529 - 80 -245 - 1224
 import Avatar from './components/Avatar'
 import DetailForm from './components/DetailForm'
 
@@ -21,14 +20,10 @@ export default {
     DetailForm
   },
   data() {
-    return {
-    }
+    return {}
   },
-  computed: {
-
-  },
-  methods: {
-  }
+  computed: {},
+  methods: {}
 }
 </script>
 

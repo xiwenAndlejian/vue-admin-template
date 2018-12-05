@@ -23,7 +23,7 @@
       </el-table-column>
       <el-table-column label="操作时间" width="200" align="center">
         <template slot-scope="scope">
-          <span>{{ showDate(scope.row.createTime) }}</span>
+          <span>{{ scope.row.createTime | DateFilter }}</span>
         </template>
       </el-table-column>
       <el-table-column class-name="status-col" label="操作执行情况" width="110" align="center">
@@ -41,12 +41,8 @@
 </template>
 
 <script type="text/ecmascript-6">
-
-import { parseTime } from '@/utils/index'
 export default {
-  components: {
-
-  },
+  components: {},
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -67,14 +63,9 @@ export default {
     }
   },
   data() {
-    return {
-    }
+    return {}
   },
-  methods: {
-    showDate(unixTime) {
-      return parseTime(new Date(unixTime))
-    }
-  }
+  methods: {}
 }
 </script>
 
