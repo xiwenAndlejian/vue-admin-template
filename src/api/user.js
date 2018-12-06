@@ -31,6 +31,14 @@ export function uniqueUsername(params) {
   })
 }
 
+export function addUser(data) {
+  return request({
+    url: `/user`,
+    method: 'post',
+    data: data
+  })
+}
+
 export function changeAvatar(userId, params) {
   return request({
     url: `/user/${userId}/avatar`,
