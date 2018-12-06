@@ -24,7 +24,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-import { uniqueUsername } from '@/api/user'
+import { uniqueUsername, addUser } from '@/api/user'
 export default {
   name: 'AddUserForm',
   components: {},
@@ -82,7 +82,16 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert('提交表单')
+          addUser(this.userForm)
+            .then(resp => {
+              this.$message({
+                type: 'success',
+                message: '创建用户成功'
+              })
+                .catch(error => {
+                  console.error(error)
+                })
+            })
         } else {
           this.$message({
             type: 'error',
